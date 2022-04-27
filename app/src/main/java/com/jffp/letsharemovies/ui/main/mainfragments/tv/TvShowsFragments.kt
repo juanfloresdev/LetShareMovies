@@ -1,15 +1,13 @@
-package com.jffp.letsharemovies.ui.main.mainfragments
+package com.jffp.letsharemovies.ui.main.mainfragments.tv
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.jffp.letsharemovies.R
-import com.jffp.letsharemovies.constants.HashKeys
-import com.jffp.letsharemovies.enums.ECustonNav
+import com.jffp.letsharemovies.ui.main.mainfragments.ActionFragment
 
 class TvShowsFragments : ActionFragment() {
 
@@ -23,7 +21,7 @@ class TvShowsFragments : ActionFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.tv_shows_fragments_fragment, container, false)
+        return inflater.inflate(R.layout.tv_shows_fragments, container, false)
     }
 
 
@@ -31,8 +29,12 @@ class TvShowsFragments : ActionFragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(TvShowsFragmentsViewModel::class.java)
 
-        val texto = view?.findViewById<TextView>(R.id.texto_ejemplo)
-        texto?.text = _eCustomNavAction.catalogType.name
+        val title = view?.findViewById<TextView>(R.id.title)
+        title?.text = _eCustomNavAction.catalogType.title
+
+        val subTitle = view?.findViewById<TextView>(R.id.sub_title)
+        subTitle?.text = _eCustomNavAction.catalogType.subTitle
+
     }
 
 

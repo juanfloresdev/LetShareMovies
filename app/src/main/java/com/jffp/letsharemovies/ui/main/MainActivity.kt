@@ -17,22 +17,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        getMovies()
     }
 
-    private fun getMovies() {
-        val apiService = MovieApiClient.getIntance().create(MovieApiService::class.java)
-        apiService.getMovieList(1).enqueue(object : Callback<ApiResponse> {
-            override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
-                val apiResponse: ApiResponse? = response.body()
-                if (apiResponse != null) {
-                    Log.d("Server_response", apiResponse.results.toString())
-                }
-            }
-            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                Log.e("Error", t.message.toString())
-            }
-        })
-    }
+
 
 }

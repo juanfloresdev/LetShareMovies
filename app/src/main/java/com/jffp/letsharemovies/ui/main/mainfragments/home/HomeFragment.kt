@@ -1,4 +1,4 @@
-package com.jffp.letsharemovies.ui.main.mainfragments
+package com.jffp.letsharemovies.ui.main.mainfragments.home
 
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.jffp.letsharemovies.constants.HashKeys
 import com.jffp.letsharemovies.constants.HashKeys.Companion.CUSTOM_NAV_ACTION
 import com.jffp.letsharemovies.constants.HashKeys.Companion.NAV_BW_FRAGMENTS
 import com.jffp.letsharemovies.databinding.HomeFragmentBinding
@@ -33,17 +32,15 @@ class HomeFragment : Fragment() {
         return _binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         // TODO: Use the ViewModel
-
     }
 
 
-
     fun redirect(to: ECustonNav) {
-        val hashMap : HashMap<String, Any> = HashMap ()
+        val hashMap: HashMap<String, Any> = HashMap()
         hashMap.put(CUSTOM_NAV_ACTION, to)
 
         val bundle = Bundle()

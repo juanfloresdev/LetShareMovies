@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.jffp.letsharemovies.ui.main.mainfragments.HomeFragment"
+        android:name="com.jffp.letsharemovies.ui.main.mainfragments.home.HomeFragment"
         android:label="home_fragment"
         tools:layout="@layout/home_fragment" >
         <action
@@ -20,13 +20,13 @@
     </fragment>
     <fragment
         android:id="@+id/moviesFragment"
-        android:name="com.jffp.letsharemovies.ui.main.mainfragments.MoviesFragment"
+        android:name="com.jffp.letsharemovies.ui.main.mainfragments.movies.MoviesFragment"
         android:label="movies_fragment"
         tools:layout="@layout/movies_fragment" />
     <fragment
         android:id="@+id/tvShowsFragments"
-        android:name="com.jffp.letsharemovies.ui.main.mainfragments.TvShowsFragments"
+        android:name="com.jffp.letsharemovies.ui.main.mainfragments.tv.TvShowsFragments"
         android:label="tv_shows_fragments_fragment"
-        tools:layout="@layout/tv_shows_fragments_fragment" />
+        tools:layout="@layout/tv_shows_fragments" />
 
 </navigation>
