@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.jffp.letsharemovies.enums.ECustonNav"></import>
+        <variable
+            name="homeFragment"
+            type="com.jffp.letsharemovies.ui.main.mainfragments.HomeFragment" />
+
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="@{(v)-> homeFragment.redirect(ECustonNav.POPULAR_MOVIES)}"
+        android:orientation="vertical"
+        tools:context=".ui.main.mainfragments.HomeFragment">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:shadowColor="@color/black"
+            android:shadowRadius="1"
+            android:text="Películas"
+            android:textSize="36dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:shadowColor="@color/black"
+            android:shadowRadius="1"
+            android:text="Seleccione una opción"
+            android:textSize="16dp"></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:elevation="5dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/popular"></ImageView>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:shadowColor="@color/black"
+                    android:shadowRadius="1"
+                    android:text="Popular"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold"></TextView>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:onClick="@{()-> homeFragment.redirect(ECustonNav.TOP_RATED_MOVIES)}"
+                android:elevation="5dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/top_rated"></ImageView>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:shadowColor="@color/black"
+                    android:shadowRadius="1"
+                    android:text="Top rated"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold"></TextView>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

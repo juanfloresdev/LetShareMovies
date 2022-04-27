@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.jffp.letsharemovies.ui.main.mainfragments.HomeFragment"
+        android:label="home_fragment"
+        tools:layout="@layout/home_fragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_tvShowsFragments"
+            app:destination="@id/tvShowsFragments" />
+        <action
+            android:id="@+id/action_homeFragment_to_moviesFragment"
+            app:destination="@id/moviesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/moviesFragment"
+        android:name="com.jffp.letsharemovies.ui.main.mainfragments.MoviesFragment"
+        android:label="movies_fragment"
+        tools:layout="@layout/movies_fragment" />
+    <fragment
+        android:id="@+id/tvShowsFragments"
+        android:name="com.jffp.letsharemovies.ui.main.mainfragments.TvShowsFragments"
+        android:label="tv_shows_fragments_fragment"
+        tools:layout="@layout/tv_shows_fragments_fragment" />
+
+</navigation>
