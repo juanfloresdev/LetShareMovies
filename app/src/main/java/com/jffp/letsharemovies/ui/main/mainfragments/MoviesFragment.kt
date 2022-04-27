@@ -12,10 +12,7 @@ import com.jffp.letsharemovies.constants.HashKeys
 import com.jffp.letsharemovies.constants.HashKeys.Companion.CUSTOM_NAV_ACTION
 import com.jffp.letsharemovies.enums.ECustonNav
 
-class MoviesFragment : Fragment() {
-
-    private lateinit var _eCustomParams: HashMap<String, Any>
-    private lateinit var _eCustomNavAction: ECustonNav
+class MoviesFragment : ActionFragment() {
 
     companion object {
         fun newInstance() = MoviesFragment()
@@ -23,20 +20,14 @@ class MoviesFragment : Fragment() {
 
     private lateinit var viewModel: MoviesViewModel
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        if (arguments != null) {
-            _eCustomParams = requireArguments().getSerializable(HashKeys.NAV_BW_FRAGMENTS) as HashMap<String, Any>
-            if (_eCustomParams.containsKey(CUSTOM_NAV_ACTION)){
-                _eCustomNavAction = _eCustomParams.get(CUSTOM_NAV_ACTION) as ECustonNav
-            }
-        }
-
         return inflater.inflate(R.layout.movies_fragment, container, false)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
