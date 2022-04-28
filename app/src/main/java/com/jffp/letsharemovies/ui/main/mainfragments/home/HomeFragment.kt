@@ -10,18 +10,18 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.jffp.letsharemovies.constants.HashKeys.Companion.CUSTOM_NAV_ACTION
 import com.jffp.letsharemovies.constants.HashKeys.Companion.NAV_BW_FRAGMENTS
-import com.jffp.letsharemovies.databinding.HomeFragmentBinding
+import com.jffp.letsharemovies.databinding.FragmentHomeBinding
 import com.jffp.letsharemovies.enums.ECustonNav
 
 class HomeFragment : Fragment() {
-    private lateinit var _binding: HomeFragmentBinding
+    private lateinit var _binding: FragmentHomeBinding
     private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = HomeFragmentBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         _binding.homeFragment = this
         return _binding.root
     }

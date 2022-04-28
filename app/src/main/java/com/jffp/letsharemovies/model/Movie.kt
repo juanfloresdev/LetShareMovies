@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 @Entity
 data class Movie(
@@ -24,4 +25,4 @@ data class Movie(
     @SerializedName("vote_average") var voteAverage: Double? = null,
     @SerializedName("vote_count") var voteCount: Int? = null
 
-)
+) : Serializable

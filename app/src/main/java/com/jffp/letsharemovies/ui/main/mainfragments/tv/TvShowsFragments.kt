@@ -21,7 +21,7 @@ class TvShowsFragments : ActionFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.tv_shows_fragments, container, false)
+        return inflater.inflate(R.layout.fragment_tv_shows, container, false)
     }
 
 

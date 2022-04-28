@@ -2,6 +2,8 @@ package com.jffp.letsharemovies.ui.main.mainfragments.movies
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.jffp.letsharemovies.enums.ECatalogType
+import com.jffp.letsharemovies.enums.ECustonNav
 
 import com.jffp.letsharemovies.model.Movie
 import com.jffp.letsharemovies.repositories.MovieRepo
@@ -14,9 +16,12 @@ class MoviesViewModel(private val movieRepo: MovieRepo) : ViewModel() {
 
     val loading = MutableLiveData<Boolean>()
 
-    fun getAllMovies() {
+    fun getMovies(eCatalogType: ECatalogType) {
         job = CoroutineScope(Dispatchers.IO).launch {
-            val response = movieRepo.getAllMovies()
+            val response = when (eCatalogType) {
+                ECatalogType.POPULAR -> movieRepo.getPopularMovies()
+                else -> movieRepo.getTopRatedMovies()
+            }
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     movieList.postValue(response.body()?.results)
@@ -37,7 +42,6 @@ class MoviesViewModel(private val movieRepo: MovieRepo) : ViewModel() {
         super.onCleared()
         job?.cancel()
     }
-
 
 
 }
