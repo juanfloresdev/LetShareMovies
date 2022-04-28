@@ -2,11 +2,14 @@ package com.jffp.letsharemovies.repositories
 
 import androidx.annotation.WorkerThread
 import com.jffp.letsharemovies.daos.MovieDao
+import com.jffp.letsharemovies.database.AppDatabase
+import com.jffp.letsharemovies.database.LocalInjector
 import com.jffp.letsharemovies.model.Movie
 import com.jffp.letsharemovies.services.MovieApiService
 import kotlinx.coroutines.flow.Flow
 
-class MovieRepo(private val movieApiService: MovieApiService) {
+class MovieRepo(private val movieApiService: MovieApiService,
+                val appDatabase: AppDatabase? = LocalInjector.injectDb()) {
 
     //From network
     suspend fun getPopularMovies() = movieApiService.getPopularMovieList(1)
