@@ -9,7 +9,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.jffp.letsharemovies.R
+import com.jffp.letsharemovies.adapters.MovieAdapter
 import com.jffp.letsharemovies.databinding.MoviesFragmentBinding
 import com.jffp.letsharemovies.repositories.MovieRepo
 import com.jffp.letsharemovies.services.MovieApiClient
@@ -18,13 +20,8 @@ import com.jffp.letsharemovies.ui.main.mainfragments.ActionFragment
 
 class MoviesFragment : ActionFragment() {
     private lateinit var _binding: MoviesFragmentBinding
-
-    companion object {
-        fun newInstance() = MoviesFragment()
-    }
-
+    private lateinit var _adapter: MovieAdapter
     private lateinit var viewModel: MoviesViewModel
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,12 +35,30 @@ class MoviesFragment : ActionFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //viewModel = ViewModelProvider(this).get(MoviesViewModel::class.java)
+        initComponents()
+    }
 
+    private fun initComponents() {
+        initHeading()
+        initRecyclerView()
+        initViewModel()
+    }
 
+    private fun initHeading() {
+        _binding.title.text = _eCustomNavAction.catalogType.title
+        _binding.subTitle.text = _eCustomNavAction.catalogType.subTitle
+    }
+
+    private fun initRecyclerView() {
+        _adapter = MovieAdapter()
+        _binding.recyclerViewMovies.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        _binding.recyclerViewMovies.adapter = _adapter
+    }
+
+    private fun initViewModel() {
         val apiService = MovieApiClient.getIntance().create(MovieApiService::class.java)
         val mainRepository = MovieRepo(apiService)
-        //binding.recyclerview.adapter = adapter
 
         viewModel = ViewModelProvider(this, MoviesViewModelFactory(mainRepository)).get(
             MoviesViewModel::class.java
@@ -52,8 +67,7 @@ class MoviesFragment : ActionFragment() {
 
         viewModel.movieList.observe(viewLifecycleOwner) {
             Log.i("response", it.toString())
-            _binding.listaPeliculas.text = it.toString()
-//            adapter.setMovies(it)
+            _adapter.submitList(it)
         }
 
         viewModel.errorMessage.observe(viewLifecycleOwner) {
@@ -69,10 +83,12 @@ class MoviesFragment : ActionFragment() {
         })
 
         viewModel.getAllMovies()
-
-        _binding.title.text = _eCustomNavAction.catalogType.title
-        _binding.subTitle.text = _eCustomNavAction.catalogType.subTitle
     }
+
+    companion object{
+        fun newInstance() = MoviesFragment()
+    }
+
 
 
 }

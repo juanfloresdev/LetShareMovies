@@ -15,12 +15,6 @@ import com.jffp.letsharemovies.enums.ECustonNav
 
 class HomeFragment : Fragment() {
     private lateinit var _binding: HomeFragmentBinding
-
-
-    companion object {
-        fun newInstance() = HomeFragment()
-    }
-
     private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(
@@ -35,7 +29,6 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 
@@ -47,6 +40,12 @@ class HomeFragment : Fragment() {
         bundle.putSerializable(NAV_BW_FRAGMENTS, hashMap)
         val navController = findNavController()
         navController.navigate(to.action, bundle)
-        Log.i("Redirect", "redirect: ")
     }
+
+
+    companion object {
+        fun newInstance() = HomeFragment()
+    }
+
+
 }
