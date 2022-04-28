@@ -23,11 +23,6 @@ class MovieDetailFragment : Fragment() {
         if (arguments != null) {
             _movie = requireArguments().getSerializable(MOVIE_BW_TRANSITION) as Movie
         }
-
-
-//        arguments?.let {
-//            _movie = it.getSerializable(MOVIE_BW_TRANSITION) as Movie
-//        }
     }
 
     override fun onCreateView(
@@ -35,22 +30,16 @@ class MovieDetailFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View? {
-        // Inflate the layout for this fragment
-
         val view: View = LayoutInflater.from(context)
             .inflate(R.layout.fragment_movie_detail, container, false)
 
         val imagePoster = view.findViewById<ImageView>(R.id.image_poster)
         imagePoster.setTransitionName(IMAGE_TRANSITION_PREFIX + _movie.id.toString())
 
-
         if (_movie?.backdropPath != null) {
             Glide.with(view)
                 .load(IMAGE_BASE_URL + _movie!!.backdropPath)
-                .placeholder(R.drawable.image_placeholder)
-                .into(imagePoster).
-                waitForLayout()
-
+                .into(imagePoster).waitForLayout()
         } else {
             imagePoster.setImageResource(R.drawable.image_error)
         }
