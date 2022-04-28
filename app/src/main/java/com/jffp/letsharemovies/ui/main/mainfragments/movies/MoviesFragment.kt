@@ -6,14 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jffp.letsharemovies.adapters.MovieAdapter
 import com.jffp.letsharemovies.databinding.FragentMoviesBinding
-import com.jffp.letsharemovies.enums.ECustonNav
 import com.jffp.letsharemovies.repositories.MovieRepo
-import com.jffp.letsharemovies.services.MovieApiClient
+import com.jffp.letsharemovies.services.MovieApiClientInjector
 import com.jffp.letsharemovies.services.MovieApiService
 import com.jffp.letsharemovies.ui.main.mainfragments.ActionFragment
 
@@ -56,8 +54,9 @@ class MoviesFragment : ActionFragment() {
     }
 
     private fun initViewModel() {
-        val apiService = MovieApiClient.getIntance().create(MovieApiService::class.java)
-        val mainRepository = MovieRepo(apiService)
+//        val apiService = MovieApiClientInjector.getIntance().create(MovieApiService::class.java)
+//        val mainRepository = MovieRepo(apiService)
+        val mainRepository = MovieRepo()
 
         viewModel = ViewModelProvider(this, MoviesViewModelFactory(mainRepository)).get(
             MoviesViewModel::class.java

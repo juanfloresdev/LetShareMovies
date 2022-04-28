@@ -3,18 +3,19 @@ package com.jffp.letsharemovies.repositories
 import androidx.annotation.WorkerThread
 import com.jffp.letsharemovies.daos.MovieDao
 import com.jffp.letsharemovies.database.AppDatabase
-import com.jffp.letsharemovies.database.LocalInjector
+import com.jffp.letsharemovies.database.DatabaseInjector
 import com.jffp.letsharemovies.model.Movie
+import com.jffp.letsharemovies.services.MovieApiClientInjector
 import com.jffp.letsharemovies.services.MovieApiService
 import kotlinx.coroutines.flow.Flow
 
-class MovieRepo(private val movieApiService: MovieApiService,
-                val appDatabase: AppDatabase? = LocalInjector.injectDb()) {
+class MovieRepo(private val movieApiService: MovieApiService? = MovieApiClientInjector.injectDoggoApiService(),
+                private val appDatabase: AppDatabase? = DatabaseInjector.injectDb()) {
 
     //From network
-    suspend fun getPopularMovies() = movieApiService.getPopularMovieList(1)
+    suspend fun getPopularMovies() = movieApiService?.getPopularMovieList(1)
 
-    suspend fun getTopRatedMovies() = movieApiService.getTopRatedMovieList(1)
+    suspend fun getTopRatedMovies() = movieApiService?.getTopRatedMovieList(1)
 
     // Room executes all queries on a separate thread.
     // Observed Flow will notify the observer when the data has changed.

@@ -1,6 +1,6 @@
 package com.jffp.letsharemovies.database
 
-object LocalInjector {
+object DatabaseInjector {
 
     var appDatabase: AppDatabase? = null
 

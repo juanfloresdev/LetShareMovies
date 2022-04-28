@@ -29,17 +29,19 @@ class MoviesViewModel(private val movieRepo: MovieRepo) : ViewModel() {
             }
 
             withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    movieList.postValue(response.body()?.results)
+                if (response != null) {
+                    if (response.isSuccessful) {
+                        movieList.postValue(response.body()?.results)
 
 
-                    response.body()?.results?.let { insert(it.get(0)) }
+                        response.body()?.results?.let { insert(it.get(0)) }
 
-                    //response.body()?.results?.let { movieRepo.insert(it.get(0)) }
-                    //response.body()?.results?.let { movieRepo.insert(movieDao, it.get(0)) }
-                    loading.value = false
-                } else {
-                    onError("Error : ${response.message()} ")
+                        //response.body()?.results?.let { movieRepo.insert(it.get(0)) }
+                        //response.body()?.results?.let { movieRepo.insert(movieDao, it.get(0)) }
+                        loading.value = false
+                    } else {
+                        onError("Error : ${response.message()} ")
+                    }
                 }
             }
         }
@@ -55,8 +57,8 @@ class MoviesViewModel(private val movieRepo: MovieRepo) : ViewModel() {
         job?.cancel()
     }
 
-    fun insert(word: Movie) = viewModelScope.launch {
-        movieRepo.insert(word)
+    fun insert(movie: Movie) = viewModelScope.launch {
+        //movieRepo.insert(movie)
     }
 
 
