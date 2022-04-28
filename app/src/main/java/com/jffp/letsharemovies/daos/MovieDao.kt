@@ -12,19 +12,19 @@ interface MovieDao {
     @Query("SELECT * FROM movie")
     fun getAll(): Flow<List<Movie>>
 
-    @Query("SELECT * FROM movie WHERE uid IN (:movieIds)")
-    fun loadAllByIds(movieIds: IntArray): List<Movie>
+//    @Query("SELECT * FROM movie WHERE uid IN (:movieIds)")
+//    fun loadAllByIds(movieIds: IntArray): List<Movie>
 
     @Query("SELECT * FROM movie WHERE title LIKE :title LIMIT 1")
     fun findByTitle(title: String): Movie
 
     @Insert
-    fun insertAll(vararg movies: Movie)
+    suspend fun insertAll(vararg movies: Movie)
 
     @Delete
     fun delete(movie: Movie)
 
     @Query("DELETE FROM movie")
-    fun deleteAll(movie: Movie)
+    fun deleteAll()
 
 }

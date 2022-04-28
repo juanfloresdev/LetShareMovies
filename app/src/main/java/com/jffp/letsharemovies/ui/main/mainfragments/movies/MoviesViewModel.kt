@@ -2,6 +2,7 @@ package com.jffp.letsharemovies.ui.main.mainfragments.movies
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.jffp.letsharemovies.daos.MovieDao
 import com.jffp.letsharemovies.database.AppDatabase
 import com.jffp.letsharemovies.enums.ECatalogType
@@ -31,6 +32,10 @@ class MoviesViewModel(private val movieRepo: MovieRepo) : ViewModel() {
                 if (response.isSuccessful) {
                     movieList.postValue(response.body()?.results)
 
+
+                    response.body()?.results?.let { insert(it.get(0)) }
+
+                    //response.body()?.results?.let { movieRepo.insert(it.get(0)) }
                     //response.body()?.results?.let { movieRepo.insert(movieDao, it.get(0)) }
                     loading.value = false
                 } else {
@@ -50,9 +55,9 @@ class MoviesViewModel(private val movieRepo: MovieRepo) : ViewModel() {
         job?.cancel()
     }
 
-//    fun insert(word: Movie) = viewModelScope.launch {
-//        movieRepo.insert(word)
-//    }
+    fun insert(word: Movie) = viewModelScope.launch {
+        movieRepo.insert(word)
+    }
 
 
 

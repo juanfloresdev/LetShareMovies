@@ -25,8 +25,8 @@ class MovieRepo(private val movieApiService: MovieApiService,
     // off the main thread.
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun insert(movieDao: MovieDao, movie: Movie) {
-        movieDao.insertAll(movie)
+    suspend fun insert(movie: Movie) {
+        appDatabase?.movieDao()?.insertAll(movie)
     }
 
 }

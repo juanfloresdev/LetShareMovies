@@ -8,7 +8,7 @@ import com.jffp.letsharemovies.daos.MovieDao
 import com.jffp.letsharemovies.model.Movie
 
 
-@Database(entities = arrayOf(Movie::class), version = 1, exportSchema = false)
+@Database(version = 1, entities = arrayOf(Movie::class), exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun movieDao(): MovieDao
@@ -26,7 +26,7 @@ abstract class AppDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "movie_database"
+                    "movie_database.db"
                 ).build()
                 INSTANCE = instance
                 // return instance

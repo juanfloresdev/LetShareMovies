@@ -4,11 +4,11 @@ import android.app.Application
 import com.jffp.letsharemovies.database.AppDatabase
 import com.jffp.letsharemovies.database.LocalInjector
 
-class Application : Application() {
+class MoviesApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        LocalInjector.appDatabase = AppDatabase.getDatabase(this@Application)
+        LocalInjector.appDatabase = AppDatabase.getDatabase(this@MoviesApplication)
     }
 
 }
