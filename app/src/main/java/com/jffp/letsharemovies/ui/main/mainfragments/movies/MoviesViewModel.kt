@@ -68,7 +68,6 @@ class MoviesViewModel(private val movieRepo: MovieRepo) : ViewModel() {
 
     fun fetchDatabaseMovies(): Flow<List<Movie>>? = movieRepo.allMovies()
 
-    //TODO: Utilizar esta logica en el ViewModel
     fun loadFromDB() {
         CoroutineScope(Dispatchers.IO).launch {
             launch {

@@ -79,7 +79,6 @@ class MoviesFragment : ActionFragment() {
             }
         }
 
-        //TODO: Check internet connection before move along
         if (checkForInternet(requireContext())) {
             _binding.frameNoSignal.visibility = View.GONE
             viewModel.movieList.observe(viewLifecycleOwner) {
