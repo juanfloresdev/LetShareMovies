@@ -13,11 +13,9 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jffp.letsharemovies.adapters.MovieAdapter
+import com.jffp.letsharemovies.ui.main.mainfragments.movies.adapters.MovieAdapter
 import com.jffp.letsharemovies.databinding.FragentMoviesBinding
 import com.jffp.letsharemovies.repositories.MovieRepo
-import com.jffp.letsharemovies.services.MovieApiClientInjector
-import com.jffp.letsharemovies.services.MovieApiService
 import com.jffp.letsharemovies.ui.main.mainfragments.ActionFragment
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -54,7 +52,7 @@ class MoviesFragment : ActionFragment() {
     }
 
     private fun initRecyclerView() {
-        _adapter = MovieAdapter()
+        _adapter = MovieAdapter(parentFragmentManager)
         _binding.recyclerViewMovies.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         _binding.recyclerViewMovies.adapter = _adapter
