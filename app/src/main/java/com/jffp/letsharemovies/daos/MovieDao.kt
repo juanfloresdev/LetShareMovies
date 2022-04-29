@@ -1,9 +1,6 @@
 package com.jffp.letsharemovies.daos
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.jffp.letsharemovies.model.Movie
 import kotlinx.coroutines.flow.Flow
 
@@ -22,9 +19,15 @@ interface MovieDao {
     suspend fun insertAll(vararg movies: Movie)
 
     @Delete
-    fun delete(movie: Movie)
+    suspend fun delete(movie: Movie)
 
     @Query("DELETE FROM movie")
-    fun deleteAll()
+    suspend fun deleteAll()
+
+    @Transaction
+    suspend fun deleteAndInsert(vararg movies: Movie){
+        deleteAll()
+        insertAll(*movies)
+    }
 
 }

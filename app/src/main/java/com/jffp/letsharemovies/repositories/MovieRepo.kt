@@ -19,15 +19,15 @@ class MovieRepo(private val movieApiService: MovieApiService? = MovieApiClientIn
 
     // Room executes all queries on a separate thread.
     // Observed Flow will notify the observer when the data has changed.
-    fun allMovies(movieDao: MovieDao): Flow<List<Movie>> = movieDao.getAll()
+    fun allMovies(): Flow<List<Movie>>? = appDatabase?.movieDao()?.getAll()
 
     // By default Room runs suspend queries off the main thread, therefore, we don't need to
     // implement anything else to ensure we're not doing long running database work
     // off the main thread.
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun insert(movie: Movie) {
-        appDatabase?.movieDao()?.insertAll(movie)
+    suspend fun insertAll(movies: List<Movie>) {
+        appDatabase?.movieDao()?.deleteAndInsert(movies = movies.map { it }.toTypedArray())
     }
 
 }
