@@ -83,6 +83,7 @@ class MoviesFragment : ActionFragment() {
 
         //TODO: Check internet connection before move along
         if (checkForInternet(requireContext())) {
+            _binding.frameNoSignal.visibility = View.GONE
             viewModel.movieList.observe(viewLifecycleOwner) {
                 Log.i("response", it.toString())
                 _adapter.submitList(it)
@@ -90,6 +91,7 @@ class MoviesFragment : ActionFragment() {
 
             viewModel.getMovies(_eCustomNavAction.catalogType)
         } else {
+            _binding.frameNoSignal.visibility = View.VISIBLE
             lifecycle.coroutineScope.launch {
                 viewModel.fetchDatabaseMovies()?.collect() {
                     _adapter.submitList(it)
