@@ -46,8 +46,10 @@ class MoviesFragment : ActionFragment() {
 
     private fun initComponents() {
         initHeading()
-        initRecyclerView()
-        initViewModel()
+//        initRecyclerView()
+        fetchDoggoImages()
+//        initViewModel()
+
     }
 
     private fun initHeading() {
@@ -110,11 +112,17 @@ class MoviesFragment : ActionFragment() {
     }
 
     private fun fetchDoggoImages() {
-        val adapter = MoviePagingDataAdapter()
+        val adapter = MoviePagingDataAdapter(parentFragmentManager)
+
         _binding.recyclerViewMovies.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        _binding.recyclerViewMovies.adapter = _adapter
 
+        _binding.recyclerViewMovies.adapter = adapter
+
+        val mainRepository = MovieRepo()
+        viewModel = ViewModelProvider(this, MoviesViewModelFactory(mainRepository)).get(
+            MoviesViewModel::class.java
+        )
         lifecycleScope.launch {
             viewModel.fetchMoviesWithFlow().distinctUntilChanged().collectLatest {
                 adapter.submitData(it)
