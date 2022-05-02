@@ -25,4 +25,6 @@ data class Movie(
     @SerializedName("vote_average") var voteAverage: Double? = null,
     @SerializedName("vote_count") var voteCount: Int? = null
 
+
+
 ) : Serializable

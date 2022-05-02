@@ -19,7 +19,7 @@ object MovieApiClientInjector {
     }
 
 
-    fun injectDoggoApiService(retrofit: Retrofit = getIntance()): MovieApiService {
+    fun injectApiService(retrofit: Retrofit = getIntance()): MovieApiService {
         return retrofit.create(MovieApiService::class.java)
     }
 }

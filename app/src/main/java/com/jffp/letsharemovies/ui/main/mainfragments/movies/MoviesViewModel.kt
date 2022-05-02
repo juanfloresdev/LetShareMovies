@@ -3,9 +3,7 @@ package com.jffp.letsharemovies.ui.main.mainfragments.movies
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
+import androidx.paging.*
 import com.jffp.letsharemovies.daos.MovieDao
 import com.jffp.letsharemovies.database.AppDatabase
 import com.jffp.letsharemovies.enums.ECatalogType
@@ -76,6 +74,12 @@ class MoviesViewModel(private val movieRepo: MovieRepo) : ViewModel() {
                 }
             }
         }
+    }
+
+
+    fun fetchMoviesWithFlow(): Flow<PagingData<Movie>> {
+        return movieRepo.letPagginMoviesFlow()
+            .cachedIn(viewModelScope)
     }
 
 

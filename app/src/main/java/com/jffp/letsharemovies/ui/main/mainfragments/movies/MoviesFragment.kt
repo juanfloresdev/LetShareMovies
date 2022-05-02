@@ -12,12 +12,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jffp.letsharemovies.ui.main.mainfragments.movies.adapters.MovieAdapter
 import com.jffp.letsharemovies.databinding.FragentMoviesBinding
 import com.jffp.letsharemovies.repositories.MovieRepo
 import com.jffp.letsharemovies.ui.main.mainfragments.ActionFragment
+import com.jffp.letsharemovies.ui.main.mainfragments.movies.adapters.MoviePagingDataAdapter
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
 class MoviesFragment : ActionFragment() {
@@ -97,12 +101,26 @@ class MoviesFragment : ActionFragment() {
         }
 
 
+
+
     }
 
     companion object {
         fun newInstance() = MoviesFragment()
     }
 
+    private fun fetchDoggoImages() {
+        val adapter = MoviePagingDataAdapter()
+        _binding.recyclerViewMovies.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        _binding.recyclerViewMovies.adapter = _adapter
+
+        lifecycleScope.launch {
+            viewModel.fetchMoviesWithFlow().distinctUntilChanged().collectLatest {
+                adapter.submitData(it)
+            }
+        }
+    }
     private fun checkForInternet(context: Context): Boolean {
 
         // register activity with the connectivity manager service
