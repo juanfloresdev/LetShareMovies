@@ -13,9 +13,9 @@ class MovieRepo(private val movieApiService: MovieApiService? = MovieApiClientIn
                 private val appDatabase: AppDatabase? = DatabaseInjector.injectDb()) {
 
     //From network
-    suspend fun getPopularMovies() = movieApiService?.getPopularMovieList(1)
+    suspend fun getPopularMovies(page: Int) = movieApiService?.getPopularMovieList(page)
 
-    suspend fun getTopRatedMovies() = movieApiService?.getTopRatedMovieList(1)
+    suspend fun getTopRatedMovies(page: Int) = movieApiService?.getTopRatedMovieList(page)
 
     // Room executes all queries on a separate thread.
     // Observed Flow will notify the observer when the data has changed.

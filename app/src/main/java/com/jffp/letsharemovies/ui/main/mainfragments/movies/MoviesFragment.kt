@@ -25,6 +25,8 @@ class MoviesFragment : ActionFragment() {
     private lateinit var _adapter: MovieAdapter
     private lateinit var viewModel: MoviesViewModel
 
+    private var loadPage = 1
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,7 +46,10 @@ class MoviesFragment : ActionFragment() {
         initHeading()
         initRecyclerView()
         initViewModel()
+        initButtons()
+
     }
+
 
     private fun initHeading() {
         _binding.title.text = _eCustomNavAction.catalogType.title
@@ -58,9 +63,8 @@ class MoviesFragment : ActionFragment() {
         _binding.recyclerViewMovies.adapter = _adapter
     }
 
+
     private fun initViewModel() {
-//        val apiService = MovieApiClientInjector.getIntance().create(MovieApiService::class.java)
-//        val mainRepository = MovieRepo(apiService)
         val mainRepository = MovieRepo()
 
         viewModel = ViewModelProvider(this, MoviesViewModelFactory(mainRepository)).get(
@@ -79,14 +83,20 @@ class MoviesFragment : ActionFragment() {
             }
         }
 
+        viewModel.nextPageAvialabe.observe(viewLifecycleOwner){
+            loadPage++
+            _binding.buttonLoadMore.visibility = View.VISIBLE
+        }
         if (checkForInternet(requireContext())) {
             _binding.frameNoSignal.visibility = View.GONE
             viewModel.movieList.observe(viewLifecycleOwner) {
                 Log.i("response", it.toString())
                 _adapter.submitList(it)
+
+                _adapter.notifyDataSetChanged()
             }
 
-            viewModel.getMovies(_eCustomNavAction.catalogType)
+            viewModel.getMovies(_eCustomNavAction.catalogType, 1)
         } else {
             _binding.frameNoSignal.visibility = View.VISIBLE
             lifecycle.coroutineScope.launch {
@@ -97,6 +107,14 @@ class MoviesFragment : ActionFragment() {
         }
 
 
+    }
+
+
+    private fun initButtons() {
+        _binding.buttonLoadMore.setOnClickListener {
+            viewModel.getMovies(_eCustomNavAction.catalogType, page = loadPage)
+            _binding.buttonLoadMore.visibility = View.GONE
+        }
     }
 
     companion object {
