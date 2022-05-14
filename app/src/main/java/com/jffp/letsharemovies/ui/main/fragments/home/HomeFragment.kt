@@ -1,7 +1,6 @@
-package com.jffp.letsharemovies.ui.main.mainfragments.home
+package com.jffp.letsharemovies.ui.main.fragments.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

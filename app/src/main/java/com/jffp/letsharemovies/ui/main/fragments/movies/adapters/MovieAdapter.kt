@@ -1,4 +1,4 @@
-package com.jffp.letsharemovies.ui.main.mainfragments.movies.adapters
+package com.jffp.letsharemovies.ui.main.fragments.movies.adapters
 
 import android.os.Bundle
 import android.view.LayoutInflater

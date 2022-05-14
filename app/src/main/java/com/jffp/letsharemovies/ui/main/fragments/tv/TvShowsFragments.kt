@@ -1,4 +1,4 @@
-package com.jffp.letsharemovies.ui.main.mainfragments.tv
+package com.jffp.letsharemovies.ui.main.fragments.tv
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.jffp.letsharemovies.R
-import com.jffp.letsharemovies.ui.main.mainfragments.ActionFragment
+import com.jffp.letsharemovies.ui.main.fragments.ActionFragment
 
 class TvShowsFragments : ActionFragment() {
 

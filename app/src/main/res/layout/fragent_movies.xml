@@ -7,7 +7,7 @@
 
         <variable
             name="movieList"
-            type="com.jffp.letsharemovies.ui.main.mainfragments.movies.MoviesFragment" />
+            type="com.jffp.letsharemovies.ui.main.fragments.movies.MoviesFragment" />
 
 
     </data>
@@ -15,7 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.main.mainfragments.movies.MoviesFragment">
+        tools:context=".ui.main.fragments.movies.MoviesFragment">
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progress_dialog"
@@ -25,7 +25,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <LinearLayout
@@ -40,16 +40,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            >
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/frame_no_signal"
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#B71C1C"
-                >
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -63,17 +61,19 @@
                         android:src="@drawable/ic_baseline_signal_wifi_off_36">
 
                     </ImageView>
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:gravity="center"
                         android:text="No signal"
-                        android:textSize="28sp"
                         android:textColor="@color/white"
-                        android:gravity="center"></TextView>
+                        android:textSize="28sp"></TextView>
 
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -111,8 +111,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:visibility="gone"
-                        android:text="Carga 20 más..."></Button>
+                        android:text="Carga 20 más..."
+                        android:visibility="gone"></Button>
 
 
                 </LinearLayout>

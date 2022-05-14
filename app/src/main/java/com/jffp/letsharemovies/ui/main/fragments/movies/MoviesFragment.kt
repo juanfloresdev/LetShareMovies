@@ -1,4 +1,4 @@
-package com.jffp.letsharemovies.ui.main.mainfragments.movies
+package com.jffp.letsharemovies.ui.main.fragments.movies
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -13,10 +13,10 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jffp.letsharemovies.ui.main.mainfragments.movies.adapters.MovieAdapter
+import com.jffp.letsharemovies.ui.main.fragments.movies.adapters.MovieAdapter
 import com.jffp.letsharemovies.databinding.FragentMoviesBinding
 import com.jffp.letsharemovies.repositories.MovieRepo
-import com.jffp.letsharemovies.ui.main.mainfragments.ActionFragment
+import com.jffp.letsharemovies.ui.main.fragments.ActionFragment
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 

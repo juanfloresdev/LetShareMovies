@@ -1,4 +1,4 @@
-package com.jffp.letsharemovies.ui.main.mainfragments.home
+package com.jffp.letsharemovies.ui.main.fragments.home
 
 import androidx.lifecycle.ViewModel
 

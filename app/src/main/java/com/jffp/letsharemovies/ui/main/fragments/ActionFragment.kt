@@ -1,13 +1,7 @@
-package com.jffp.letsharemovies.ui.main.mainfragments
+package com.jffp.letsharemovies.ui.main.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.jffp.letsharemovies.R
 import com.jffp.letsharemovies.constants.HashKeys
 import com.jffp.letsharemovies.enums.ECustonNav
 
